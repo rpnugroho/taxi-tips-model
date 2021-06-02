@@ -15,13 +15,16 @@ PACKAGE_ROOT = pathlib.Path(taxi_tips_model.__file__).resolve().parent
 
 DATE_START = "2021-04-05"
 DATE_END = "2021-04-11"
-QUERY = (
-    f"trip_start_timestamp between '{DATE_START}T00:00:00' and '{DATE_END}T23:59:59'"
-)
+NAME_DATASET_RAW_INTERIM = f"{DATE_START}_to_{DATE_END}.csv"
+QUERY = f"trip_start_timestamp between '{DATE_START}T00:00:00' and '{DATE_END}T23:59:59'"
 
-RAW_DATASET = PACKAGE_ROOT / f"datasets/raw/{DATE_START}_to_{DATE_END}.csv"
-INTERIM_DATASET = PACKAGE_ROOT / f"datasets/interim/{DATE_START}_to_{DATE_END}.csv"
+RAW_DATASET_DIR = PACKAGE_ROOT / "datasets/raw"
+INTERIM_DATASET_DIR = PACKAGE_ROOT / "datasets/interim"
+PROCESSED_DATASET_DIR = PACKAGE_ROOT / "datasets/processed"
 
+
+RAW_DATASET = RAW_DATASET_DIR / NAME_DATASET_RAW_INTERIM
+INTERIM_DATASET = INTERIM_DATASET_DIR / NAME_DATASET_RAW_INTERIM
 CASH_DATASET = PACKAGE_ROOT / "datasets/processed/test.csv"
 NON_CASH_DATASET = PACKAGE_ROOT / "datasets/processed/train.csv"
 
@@ -76,6 +79,9 @@ def check_execution_path():
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     _logger.info("Started download script")
+    os.makedirs(RAW_DATASET_DIR, exist_ok=True)
+    os.makedirs(INTERIM_DATASET_DIR, exist_ok=True)
+    os.makedirs(PROCESSED_DATASET_DIR, exist_ok=True)
 
     if check_execution_path():
         download_dataset(query=QUERY, raw_dataset=RAW_DATASET)

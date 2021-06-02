@@ -41,10 +41,9 @@ jobs:
       - run:
           name: Runnning tests
           command: |
-            PYTHONPATH=. python3 taxi_tips_model/dataset_downloader.py
             py.test -vv tests
 
-train_and_upload_model:
+  train_and_upload_model:
     <<: *defaults
     steps:
       - checkout
