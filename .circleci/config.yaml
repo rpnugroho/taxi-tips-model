@@ -15,6 +15,7 @@ jobs:
             pip install -r requirements/test_requirements.txt
             PYTHONPATH=. python3 taxi_tips_model/dataset_downloader.py
             py.test -vv tests
+            
 workflows:
   version: 2
   test-all:
