@@ -1,23 +1,78 @@
 version: 2
+
+defaults: &defaults
+  docker:
+    - image: circleci/python:3.7.10
+  working_directory: ~/project
+
+prepare_venv: &prepare_venv
+  run:
+    name: Create venv
+    command: |
+      python3 -m venv venv
+      source venv/bin/activate
+      pip install --upgrade pip
+
+fetch_data: &fetch_data
+  run:
+    name: Set script permissions and fetch data
+    command: |
+      source venv/bin/activate
+      PYTHONPATH=. python3 taxi_tips_model/dataset_downloader.py
+
 jobs:
   test_classification_model:
     working_directory: ~/project
     docker:
       - image: circleci/python:3.7.10
+    <<: *defaults
     steps:
       - checkout
+      - *prepare_venv
       - run:
-          name: Runnning tests
+          name: Install requirements
           command: |
-            virtualenv venv
             . venv/bin/activate
             pip install --upgrade pip
             pip install -r requirements/test_requirements.txt
+      - *fetch_data
+       - run:
+          name: Train model
+          command: |
+            . venv/bin/activate
+            PYTHONPATH=. python3 taxi_tips_model/train_pipeline.py
+      - run:
+          name: Runnning tests
+          command: |
             PYTHONPATH=. python3 taxi_tips_model/dataset_downloader.py
             py.test -vv tests
-            
+
+train_and_upload_model:
+    <<: *defaults
+    steps:
+      - checkout
+      - *prepare_venv
+      - run: 
+          name: Install requirements
+          command: |
+            . venv/bin/activate
+            pip install -r requirements/test_requirements.txt
+      - *fetch_data
+      - run: 
+          name: Train model
+          command: |
+            . venv/bin/activate
+            PYTHONPATH=. python3 taxi_tips_model/train_pipeline.py
+      - run:
+          name: Publish model to Gemfury
+          command: |
+            . venv/bin/activate
+            chmod +x ./scripts/publish_model.sh
+            ./scripts/publish_model.sh ./taxi_tips_model
+
 workflows:
   version: 2
   test-all:
     jobs:
       - test_classification_model
+      - train_and_upload_model
