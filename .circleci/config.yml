@@ -41,7 +41,7 @@ jobs:
       - run:
           name: Runnning tests
           command: |
-            py.test -vv tests
+            pytest -vv tests
 
   train_and_upload_model:
     <<: *defaults
