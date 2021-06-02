@@ -1,0 +1,106 @@
+# PACKAGE OVERVIEW
+package_name: taxi_tips_model
+
+# PIPELINE
+pipeline_name: taxi_tips_model
+pipeline_save_file: taxi_tips_model_output_v
+
+# DATA
+training_data_file: train.csv
+test_data_file: test.csv
+# set train/test split
+test_size: 0.1
+# to set the random seed
+random_state: 0
+
+# MODEL
+objective: binary
+is_unbalance: True
+num_leaves: 64
+max_depth: -1
+learning_rate: 0.05
+n_estimators: 100
+colsample_bytree: 1.0
+
+# VARIABLES
+# The variable we are attempting to predict
+target: target
+
+features:
+  - trip_id
+  # - taxi_id
+  - trip_start_timestamp
+  - trip_end_timestamp
+  - trip_seconds
+  - trip_miles
+  - fare
+  # - tips
+  # - tolls
+  - extras
+  # - trip_total
+  - company
+  - pickup_community_area
+  - dropoff_community_area
+  - pickup_centroid_latitude
+  - pickup_centroid_longitude
+  # - pickup_centroid_location
+  - dropoff_centroid_latitude
+  - dropoff_centroid_longitude
+  # - dropoff_centroid_location
+  # - pickup_census_tract
+  # - dropoff_census_tract
+
+features_na_not_allowed:
+  - trip_id
+
+time_vars:
+  - trip_start_timestamp
+  - trip_end_timestamp
+
+categorical_vars:
+  - company
+  - pickup_community_area
+  - dropoff_community_area
+
+# na mean community "outside" chicago
+categorical_vars_with_na:
+  - pickup_community_area
+  - dropoff_community_area
+
+numerical_vars:
+  - trip_seconds
+  - trip_miles
+  - fare
+  - extras
+
+latlng_vars:
+  - pickup_centroid_latitude
+  - pickup_centroid_longitude
+  - dropoff_centroid_latitude
+  - dropoff_centroid_longitude
+
+# na mean location "outside" chicago
+latlng_vars_with_na:
+  - pickup_centroid_latitude
+  - pickup_centroid_longitude
+  - dropoff_centroid_latitude
+  - dropoff_centroid_longitude
+
+latlng_pickup_vars:
+  - pickup_centroid_latitude
+  - pickup_centroid_longitude
+
+latlng_dropoff_vars:
+  - dropoff_centroid_latitude
+  - dropoff_centroid_longitude
+
+# unnused features
+drop_vars:
+  - taxi_id
+#  - trip_id # useful for prediction
+  - tolls
+  - trip_total
+  - pickup_centroid_location
+  - dropoff_centroid_location
+  - pickup_census_tract
+  - dropoff_census_tract

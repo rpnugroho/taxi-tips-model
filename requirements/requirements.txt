@@ -1,0 +1,28 @@
+# We use compatible release functionality (see PEP 440 here: https://www.python.org/dev/peps/pep-0440/#compatible-release)
+# to specify acceptable version ranges of our project dependencies. This gives us the flexibility to keep up with small
+# updates/fixes, whilst ensuring we don't install a major update which could introduce backwards incompatible changes.
+
+# dataset downloader
+sodapy>=2.1.0,<2.2.0
+# processing
+numpy>=1.20.3,<1.21.0
+pandas>=1.2.4,<1.3.0
+# model
+scikit-learn>=0.24.2,<0.25.0
+lightgbm>=3.2.1,<3.3.0
+# data validation
+pydantic>=1.8.1,<1.9.0
+marshmallow>=3.2.2,<3.3.0
+strictyaml>=1.3.2,<1.4.0
+ruamel.yaml==0.16.12
+# data management
+joblib>=0.14.1,<0.15.0
+dill>=0.3.3,<0.4.0
+
+
+# testing requirements
+pytest>=6.2.4,<6.3.0
+
+# packaging
+setuptools>=47.1.0,<47.2.0
+wheel>=0.36.2,<0.37.0
