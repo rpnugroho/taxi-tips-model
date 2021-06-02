@@ -1,3 +1,4 @@
+import os
 from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split
 
@@ -5,6 +6,7 @@ from taxi_tips_model import pipeline
 from taxi_tips_model.config.core import config
 from taxi_tips_model.processing.data_manager import load_dataset, save_pipeline
 from taxi_tips_model.processing.validation import drop_na_inputs
+from taxi_tips_model.config.core import TRAINED_MODEL_DIR
 
 
 def run_training() -> None:
@@ -31,4 +33,5 @@ def run_training() -> None:
 
 
 if __name__ == "__main__":
+    os.makedirs(TRAINED_MODEL_DIR, exist_ok=True)
     run_training()
