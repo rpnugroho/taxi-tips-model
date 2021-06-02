@@ -192,5 +192,5 @@ model_pipeline = Pipeline(
         ("data", data_union),
         ("clf", clf),
     ],
-    verbose=False,
+    verbose=True,
 )

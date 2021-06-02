@@ -3,8 +3,8 @@
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,macos,flask,python
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,macos,flask,python
 
-### Pickle ###
-*.pkl
+### Model ###
+taxi_tips_model/trained_models/*
 
 ### Dataset ###
 *.csv
