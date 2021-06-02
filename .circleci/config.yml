@@ -22,9 +22,6 @@ fetch_data: &fetch_data
 
 jobs:
   test_classification_model:
-    working_directory: ~/project
-    docker:
-      - image: circleci/python:3.7.10
     <<: *defaults
     steps:
       - checkout
