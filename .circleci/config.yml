@@ -38,7 +38,7 @@ jobs:
           name: Train model
           command: |
             source venv/bin/activate
-            mkdir taxi_tips_model/trained_models  
+            mkdir taxi_tips_model/trained_models
             PYTHONPATH=. python3 taxi_tips_model/train_pipeline.py
       - run:
           name: Runnning tests
@@ -60,6 +60,7 @@ jobs:
           name: Train model
           command: |
             source venv/bin/activate
+            mkdir taxi_tips_model/trained_models
             PYTHONPATH=. python3 taxi_tips_model/train_pipeline.py
       - run:
           name: Publish model to Gemfury
