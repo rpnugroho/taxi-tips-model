@@ -17,6 +17,7 @@ fetch_data: &fetch_data
   run:
     name: Download data
     command: |
+      ldd --version
       source venv/bin/activate
       PYTHONPATH=. python3 taxi_tips_model/dataset_downloader.py
 
