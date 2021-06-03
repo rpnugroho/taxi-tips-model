@@ -12,6 +12,7 @@ prepare_venv: &prepare_venv
       python3 -m venv venv
       source venv/bin/activate
       pip install --upgrade pip
+      pip install wheel
 
 fetch_data: &fetch_data
   run:
@@ -42,7 +43,7 @@ jobs:
       - run:
           name: Runnning tests
           command: |
-            pytest -vv tests
+            py.test -vv tests
 
   train_and_upload_model:
     <<: *defaults
@@ -63,7 +64,7 @@ jobs:
       - run:
           name: Publish model to Gemfury
           command: |
-            . venv/bin/activate
+            source venv/bin/activate
             chmod +x ./scripts/publish_model.sh
             ./scripts/publish_model.sh ./taxi_tips_model
 
