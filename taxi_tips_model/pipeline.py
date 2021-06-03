@@ -184,7 +184,7 @@ clf = LGBMClassifier(
     learning_rate=config.model_config.learning_rate,
     n_estimators=config.model_config.n_estimators,
     colsample_bytree=config.model_config.colsample_bytree,
-    force_row_wise=True,
+    force_col_wise=True,
     verbose=2,
 )
 
