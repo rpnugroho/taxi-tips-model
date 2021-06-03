@@ -12,9 +12,9 @@ from taxi_tips_model.config.core import TRAINED_MODEL_DIR
 def run_training() -> None:
     """Train the model."""
     # read training data
-    _data = load_dataset(file_name=config.app_config.training_data_file)
+    data = load_dataset(file_name=config.app_config.training_data_file)
     # filter missing data in some columns
-    data = drop_na_inputs(input_data=_data)
+    data = drop_na_inputs(input_data=data)
     # divide train and test
     X_train, X_test, y_train, y_test = train_test_split(
         data[config.model_config.features],
