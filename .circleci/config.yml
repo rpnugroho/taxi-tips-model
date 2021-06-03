@@ -15,7 +15,7 @@ prepare_venv: &prepare_venv
 
 fetch_data: &fetch_data
   run:
-    name: Set script permissions and fetch data
+    name: Download data
     command: |
       source venv/bin/activate
       PYTHONPATH=. python3 taxi_tips_model/dataset_downloader.py
