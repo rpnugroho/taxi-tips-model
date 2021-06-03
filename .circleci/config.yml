@@ -67,7 +67,7 @@ jobs:
           command: |
             source venv/bin/activate
             chmod +x ./scripts/publish_model.sh
-            ./scripts/publish_model.sh ./taxi_tips_model
+            ./scripts/publish_model.sh .
 
 workflows:
   version: 2
