@@ -11,7 +11,7 @@ from setuptools import find_packages, setup
 # Package meta-data.
 NAME = "taxi_tips_model"
 DESCRIPTION = 'Classification model for "Chicago Taxi Trips Dataset" to predict if taxi driver got tips when use cash payment method.'
-URL = "https://github.com/rpnugroho/taxi-tips-models"
+URL = "https://github.com/rpnugroho/taxi-tips-model"
 EMAIL = "nugroho.rizkyp@gmail.com"
 AUTHOR = "RPNugroho"
 REQUIRES_PYTHON = ">=3.6.0"
