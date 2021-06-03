@@ -170,7 +170,8 @@ data_union = ph.DataFrameUnion(
         ("num", num_pipe),
         ("latlng", latlng_pipe),
         ("craft", craft_pipe),
-    ]
+    ],
+    verbose=True,
 )
 
 clf = LGBMClassifier(
@@ -183,8 +184,9 @@ clf = LGBMClassifier(
     learning_rate=config.model_config.learning_rate,
     n_estimators=config.model_config.n_estimators,
     colsample_bytree=config.model_config.colsample_bytree,
-    n_jobs=-1,
+    verbose=2,
 )
+
 
 model_pipeline = Pipeline(
     [
