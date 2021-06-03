@@ -52,7 +52,7 @@ jobs:
           name: Install requirements
           command: |
             . venv/bin/activate
-            pip install -r requirements/test_requirements.txt
+            pip install -r requirements/requirements.txt
       - *fetch_data
       - run: 
           name: Train model
