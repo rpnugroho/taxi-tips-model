@@ -29,14 +29,14 @@ jobs:
       - run:
           name: Install requirements
           command: |
-            . venv/bin/activate
+            source venv/bin/activate
             pip install --upgrade pip
             pip install -r requirements/test_requirements.txt
       - *fetch_data
       - run:
           name: Train model
           command: |
-            . venv/bin/activate
+            source venv/bin/activate
             PYTHONPATH=. python3 taxi_tips_model/train_pipeline.py
       - run:
           name: Runnning tests
@@ -70,7 +70,7 @@ workflows:
   version: 2
   test-all:
     jobs:
-      - test_classification_model
-      - train_and_upload_model:
-          requires:
-            - test_classification_model
+      - train_and_upload_model
+      # - train_and_upload_model:
+          # requires:
+            # - test_classification_model
