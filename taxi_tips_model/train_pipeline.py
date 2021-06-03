@@ -33,5 +33,5 @@ def run_training() -> None:
 
 
 if __name__ == "__main__":
-    # os.makedirs(TRAINED_MODEL_DIR, exist_ok=True)
+    os.makedirs(TRAINED_MODEL_DIR, exist_ok=True)
     run_training()
